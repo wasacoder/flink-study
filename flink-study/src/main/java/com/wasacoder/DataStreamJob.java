@@ -46,5 +46,14 @@ public class DataStreamJob {
 		AqcProjectLoan.print();
 		LoanAccount.print();
 		AqcProjectLoanRelation.print();
+
+
+
+		String createAqcProjectBalance = "CREATE TABLE AqcProjectBalance (aqc_project_no VARCHAR, balance_amt DOUBLE) WITH \n"+
+			" ('connector' = 'filesystem'\n" +
+			" ,'path' = 'file:///Users/wangxq/csv'\n" +
+			" ,'format' = 'csv')";
+		tEnv.executeSql(createAqcProjectBalance);
+		tEnv.sqlQuery(joinQuery).executeInsert("AqcProjectBalance");
 	}
 }
